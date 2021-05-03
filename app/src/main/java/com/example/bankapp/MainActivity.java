@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         DBHelper mydb = new DBHelper(this);
         Cursor res = mydb.getAllData();
         int i = 0;

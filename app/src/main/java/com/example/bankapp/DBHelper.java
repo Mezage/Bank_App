@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("ID", 30);
         db.insert("test",null, contentValues);
+
     }
 
     @Override
