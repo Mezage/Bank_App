@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -27,21 +28,37 @@ public class RegisterActivity extends AppCompatActivity {
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView warning = (TextView) findViewById(R.id.hint);
+                Cursor res = mydb.getDataByUsername(username.getText().toString());
 
-                boolean ins = mydb.insertUser(username.getText().toString(),password.getText().toString(),balance.getText().toString());
+                Log.d("table!",Integer.toString(res.getCount()) );
+                if(username.getText().toString().equals("") || password.getText() == null || balance.getText() == null){
+                    warning.setText("Please fill in all the information");
+                }
+                else if(res.getCount() == 0) {
+                    warning.setText("Success!");
+                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(), balance.getText().toString());
+
+                    /************************
+                     * Go to USER PAGE HERE *
+                     ************************/
+                }else{
+
+                    warning.setText("Username already in use!");
+                }
 
 
-                /************************
-                 * Go to USER PAGE HERE *
-                 ************************/
 
             }
         });
 
+
+        /*********** temporary    just for testing database */
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Cursor res = mydb.getAllData();
+                Log.d("table","~");
                 while(res.moveToNext()){
                     Log.d("table", "ID: "+res.getString(0));
                     Log.d("table", "username: "+res.getString(1));
@@ -50,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        /*********** temporary    just for testing database */
 
 
 

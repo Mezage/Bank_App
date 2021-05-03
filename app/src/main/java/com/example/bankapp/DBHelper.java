@@ -44,10 +44,28 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public Cursor getDataByUsername(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from user WHERE username = '"+username+"'",null);
+        return res;
+    }
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from user",null);
         return res;
+    }
+
+    public boolean updateBalance(String username,String balance) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = getDataByUsername(username);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID",Integer.parseInt( res.getString(0) ));
+        contentValues.put("username",username);
+        contentValues.put("password",res.getString(2));
+        contentValues.put("balance",balance);
+        db.update("user", contentValues,"USERNAME = ?", new String[]{username});
+        return true;
     }
 
 }
