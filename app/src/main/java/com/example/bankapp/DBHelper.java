@@ -10,31 +10,43 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "test.db";
+    public static final String DATABASE_NAME = "bank.db";
 
     public DBHelper(Context context){
         super(context,DATABASE_NAME,null,1);
-        Log.d("asd","constructor");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("asd","created");
-        db.execSQL("CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT)");
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("ID", 30);
-        db.insert("test",null, contentValues);
+
+        db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE varchar(255) )");
+
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS user");
+        onCreate(db);
+    }
 
+    public boolean insertUser(String username, String password, String balance){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username",username);
+        contentValues.put("password",password);
+        contentValues.put("BALANCE",balance);
+        long result = db.insert("user",null ,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
 
     public Cursor getAllData() {
-        Log.d("asd","getdata");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from test",null);
+        Cursor res = db.rawQuery("select * from user",null);
         return res;
     }
 
