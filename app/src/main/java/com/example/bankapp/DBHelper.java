@@ -14,20 +14,32 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context){
         super(context,DATABASE_NAME,null,1);
+        Log.d("asd","constructor");
     }
-    @Override
-    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    db.execSQL("CREATE TABLE test (ID int PRIMARY KEY AUTOINCREMENT)");
+        Log.d("asd","created");
+        db.execSQL("CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT)");
         ContentValues contentValues = new ContentValues();
         contentValues.put("ID", 30);
         db.insert("test",null, contentValues);
-        Cursor res = db.rawQuery("SELECT * FROM test", null);
-        int i = 0;
-        while(res.moveToNext()){
-            Log.d("asd",res.getString(i++));
-        }
+//        Cursor res = db.rawQuery("SELECT * FROM test", null);
+//        int i = 0;
+//        while(res.moveToNext()){
+//            Log.d("asd",res.getString(i++));
+//        }
     }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
+
+
+    public Cursor getAllData() {
+        Log.d("asd","getdata");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from test",null);
+        return res;
+    }
+
 }
