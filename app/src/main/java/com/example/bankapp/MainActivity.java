@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                     if (cursor != null && cursor.moveToFirst()) {
 
-                        //assume that password is 2nd column
-                        if (cursor.getString(1).compareTo(password.getText().toString()) == 0) {
+                        //assume that password is 2nd column <- it is 3rd :D
+                        if (cursor.getString(2).compareTo(password.getText().toString()) == 0) {
                             //launch main and close cursor
                             cursor.close();
 
