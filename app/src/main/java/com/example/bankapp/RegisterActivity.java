@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Cursor res = mydb.getDataByUsername(username.getText().toString());
 
                 Log.d("table!",Integer.toString(res.getCount()) );
-                if(username.getText().toString().equals("") || password.getText() == null || balance.getText() == null){
+                if(username.getText().toString().equals("") || password.getText().toString().equals("") || balance.getText().toString().equals("")){
                     warning.setText("Please fill in all the information");
                 }
                 else if(res.getCount() == 0) {
