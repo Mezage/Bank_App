@@ -21,7 +21,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE varchar(255) )");
 
-
     }
 
     @Override
@@ -31,29 +30,23 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean insertUser(String username, String password, String balance){
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username",username);
         contentValues.put("password",password);
         contentValues.put("BALANCE",balance);
         long result = db.insert("user",null ,contentValues);
-        if(result == -1)
-            return false;
-        else
-            return true;
+        return result != -1;
     }
 
     public Cursor getDataByUsername(String username){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from user WHERE username = '"+username+"'",null);
-        return res;
+        return db.rawQuery("select * from user WHERE username = '"+username+"'",null);
     }
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from user",null);
-        return res;
+        return db.rawQuery("select * from user",null);
     }
 
     public boolean updateBalance(String username,String balance) {
