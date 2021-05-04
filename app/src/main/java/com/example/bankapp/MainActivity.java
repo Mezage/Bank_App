@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button reg_btn = findViewById(R.id.button);
+        Button reg_btn = findViewById(R.id.regButton);
+        Button log_btn = findViewById(R.id.loginButton);
+        Button forgot_btn = findViewById(R.id.forgotLogin);
+
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        log_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //launch main page
+            }
+        });
+
+        forgot_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),LoginForgot.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
