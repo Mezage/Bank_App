@@ -33,7 +33,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        log_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        forgot_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ForgetActivity.class);
+                startActivity(intent);
+            }
+        });
+
+/*
         log_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,14 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        forgot_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LoginForgot.class);
-                startActivity(intent);
-            }
-        });
+*/
 
     }
 }
