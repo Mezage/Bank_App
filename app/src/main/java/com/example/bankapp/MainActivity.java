@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                             //launch main and close cursor
                             cursor.close();
 
-//                            Intent intent = new Intent(getApplicationContext(), something.class);
+//                            Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
 //                            startActivity(intent);
 
                         }  //move to next column, assume its password

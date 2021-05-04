@@ -16,11 +16,16 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context,DATABASE_NAME,null,1);
     }
 
+    //this won't be called if not in a service
+    // will have to add this to constructor or something
+    //maybe restrict balance to only integers, to avoid exceptions
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE varchar(255) )");
-
+        insertUser("Carl#1", "123456", "1000");
+        insertUser("Wendy_2", "222222", "500");
+        insertUser("Joseph3!", "010101", "26000");
+        insertUser("Alba4", "987654", "15");
     }
 
     @Override
