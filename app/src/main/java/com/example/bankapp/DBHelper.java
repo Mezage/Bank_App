@@ -22,10 +22,33 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE varchar(255) )");
-        insertUser("Carl#1", "123456", "1000");
-        insertUser("Wendy_2", "222222", "500");
-        insertUser("Joseph3!", "010101", "26000");
-        insertUser("Alba4", "987654", "15");
+
+//        db.execSQL("INSERT INTO bank.user (ID, username, password, balance) VALUES ('Carl#1', '123456', '1000'),('Wendy_2','22222','500') , ('Joseph3!', '010101', '26000'), ('Alba4', '987654', '15')");
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username","Carl#1");
+        contentValues.put("password","123456");
+        contentValues.put("BALANCE","1000");
+        db.insert("user",null ,contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put("username","Wendy_2");
+        contentValues.put("password","33333");
+        contentValues.put("BALANCE","150");
+        db.insert("user",null ,contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put("username","Joseph!!!3");
+        contentValues.put("password","233322");
+        contentValues.put("BALANCE","555550");
+        db.insert("user",null ,contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put("username","Alba4,,,");
+        contentValues.put("password","948794djl6");
+        contentValues.put("BALANCE","777");
+        db.insert("user",null ,contentValues);
+
     }
 
     @Override
