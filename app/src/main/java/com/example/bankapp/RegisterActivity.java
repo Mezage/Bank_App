@@ -3,6 +3,7 @@ package com.example.bankapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,9 +40,9 @@ public class RegisterActivity extends AppCompatActivity {
                     warning.setText("Success!");
                     boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(), balance.getText().toString());
 
-                    /************************
-                     * Go to USER PAGE HERE *
-                     ************************/
+                    Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    startActivity(intent);
+
                 }else{
 
                     warning.setText("Username already in use!");

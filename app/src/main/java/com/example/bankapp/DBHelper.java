@@ -72,6 +72,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from user WHERE username = '"+username+"'",null);
     }
 
+    public Cursor getDataBytUsernameAndPassword(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("select * from user WHERE username = '"+username+"' AND  password = '"+ password +"'",null);
+    }
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("select * from user",null);
