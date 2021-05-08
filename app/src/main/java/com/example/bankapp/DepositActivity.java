@@ -20,7 +20,7 @@ public class DepositActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit);
-        EditText amount = findViewById(R.id.EditText_amount);
+        EditText amount = findViewById(R.id.editTextNumberDecimalAmount);
         EditText password = findViewById(R.id.editTextPassword);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

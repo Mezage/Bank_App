@@ -23,7 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         EditText username = findViewById(R.id.editTextTextUsername);
         EditText password = findViewById(R.id.editTextTextPassword);
-        EditText balance = findViewById(R.id.editTextTextBalance);
+        EditText balance = findViewById(R.id.editTextNumberDecimalBalance);
+        EditText email = findViewById(R.id.editTextTextEmail);
 
         Button reg_btn = findViewById(R.id.button_reg);
         reg_btn.setOnClickListener(new View.OnClickListener() {
@@ -33,14 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
                 Cursor res = mydb.getDataByUsername(username.getText().toString());
 
                 Log.d("table!",Integer.toString(res.getCount()) );
-                if(username.getText().toString().equals("") || password.getText().toString().equals("") || balance.getText().toString().equals("")){
+                if(username.getText().toString().equals("") || password.getText().toString().equals("") || balance.getText().toString().equals("") || email.getText().toString().equals("")){
                     warning.setText("Please fill in all the information");
                 }
                 else if(res.getCount() == 0) {
                     warning.setText("Success!");
-                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(),Integer.parseInt( balance.getText().toString()));
+                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(),Integer.parseInt( balance.getText().toString()), email.getText().toString());
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    intent.putExtra("username", username.getText().toString());
                     startActivity(intent);
 
                 }else{

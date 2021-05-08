@@ -57,13 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
-//                Log.d("test",cursor.getString(0));
                 if(cursor.getCount() != 0){
                     cursor.moveToNext();
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
                     intent.putExtra("username",cursor.getString(1));
-                    Log.d("test",cursor.getString(1));
                     startActivity(intent);
                 }
 
@@ -103,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("table", "username: "+res.getString(1));
                     Log.d("table", "password: "+res.getString(2));
                     Log.d("table", "balance: "+res.getString(3));
+                    Log.d("table", "email: "+res.getString(4));
                 }
             }
         });
