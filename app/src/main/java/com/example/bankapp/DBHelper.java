@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertUser(String username, String password, long balance, String email){
+    public boolean insertUser(String username, String password, double balance, String email){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username",username);
@@ -90,7 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from user",null);
     }
 
-    public boolean updateBalance(String username,int balance) {
+    public boolean updateBalance(String username,double balance) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = getDataByUsername(username);
         while(res.moveToNext()){
@@ -98,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("ID",Integer.parseInt( res.getString(0) ));
             contentValues.put("username",res.getString(1));
             contentValues.put("password",res.getString(2));
-            contentValues.put("balance",balance);
+            contentValues.put("balance", Double.parseDouble( res.getString(3))+balance );
             db.update("user", contentValues,"USERNAME = ?", new String[]{username});
 
             Log.d("balance_update: ",res.getString(1)+" has changed the balance to be "+res.getString(3));
