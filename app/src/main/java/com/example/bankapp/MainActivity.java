@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         log_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Log.d("signin password",password.getText().toString());
+
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
 //                Log.d("test",cursor.getString(0));
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*********** temporary    just for testing database */
+        /*********** temporary just for testing database ********/
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

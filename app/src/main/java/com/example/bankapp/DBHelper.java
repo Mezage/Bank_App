@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //this won't be called if not in a service
-    // will have to add this to constructor or something
+    //will have to add this to constructor or something
     //maybe restrict balance to only integers, to avoid exceptions
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -25,6 +25,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //        db.execSQL("INSERT INTO bank.user (ID, username, password, balance) VALUES ('Carl#1', '123456', '1000'),('Wendy_2','22222','500') , ('Joseph3!', '010101', '26000'), ('Alba4', '987654', '15')");
 
+        Log.e("table", "onCreate called");
+
+        //why no call to new add new user?
         ContentValues contentValues = new ContentValues();
         contentValues.put("username","Carl#1");
         contentValues.put("password","123456");
