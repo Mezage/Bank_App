@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d("test",cursor.getString(0));
                 if(cursor.getCount() != 0){
                     cursor.moveToNext();
-                    Log.d("test","testtt");
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
                     intent.putExtra("username",cursor.getString(1));
