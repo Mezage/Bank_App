@@ -85,12 +85,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateBalance(String username,String balance) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = getDataByUsername(username);
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("ID",Integer.parseInt( res.getString(0) ));
-        contentValues.put("username",username);
-        contentValues.put("password",res.getString(2));
-        contentValues.put("balance",balance);
-        db.update("user", contentValues,"USERNAME = ?", new String[]{username});
+        while(res.moveToNext()){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("ID",Integer.parseInt( res.getString(0) ));
+            contentValues.put("username",res.getString(1));
+            contentValues.put("password",res.getString(2));
+            contentValues.put("balance",balance);
+            db.update("user", contentValues,"USERNAME = ?", new String[]{username});
+
+            Log.d("balance_update: ",res.getString(1)+"has changed the balance to be "+res.getString(3));
+        }
         return true;
     }
 

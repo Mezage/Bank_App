@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        log_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-                startActivity(intent);
-            }
-        });
+//        log_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         forgot_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("signin password",password.getText().toString());
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
+//                Log.d("test",cursor.getString(0));
                 if(cursor.getCount() != 0){
+                    cursor.moveToNext();
+                    Log.d("test","testtt");
+
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    intent.putExtra("username",cursor.getString(1));
+                    Log.d("test",cursor.getString(1));
                     startActivity(intent);
                 }
 
