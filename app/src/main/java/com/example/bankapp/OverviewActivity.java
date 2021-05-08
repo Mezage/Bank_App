@@ -34,6 +34,7 @@ public class OverviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DepositActivity.class);
+                intent.putExtra("username",res.getString(1));
                 startActivity(intent);
             }
         });

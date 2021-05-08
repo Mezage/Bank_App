@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/amount"
+        android:id="@+id/EditText_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -71,7 +71,7 @@
         android:layout_marginTop="32dp"
         android:text="Withdraw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount" />
+        app:layout_constraintTop_toBottomOf="@+id/EditText_amount" />
 
     <Button
         android:id="@+id/Deposit_de"
@@ -81,5 +81,5 @@
         android:layout_marginEnd="60dp"
         android:text="Deposit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount" />
+        app:layout_constraintTop_toBottomOf="@+id/EditText_amount" />
 </androidx.constraintlayout.widget.ConstraintLayout>
