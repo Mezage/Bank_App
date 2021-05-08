@@ -93,7 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("balance",balance);
             db.update("user", contentValues,"USERNAME = ?", new String[]{username});
 
-            Log.d("balance_update: ",res.getString(1)+"has changed the balance to be "+res.getString(3));
+            Log.d("balance_update: ",res.getString(1)+" has changed the balance to be "+res.getString(3));
         }
         return true;
     }
