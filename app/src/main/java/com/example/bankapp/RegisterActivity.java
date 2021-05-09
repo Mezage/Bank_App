@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else if(res.getCount() == 0) {
                     warning.setText("Success!");
-                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(),Integer.parseInt( balance.getText().toString()), email.getText().toString());
+                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(),Double.parseDouble( balance.getText().toString()), email.getText().toString());
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
                     intent.putExtra("username", username.getText().toString());
