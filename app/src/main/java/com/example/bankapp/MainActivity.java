@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         forgot_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ForgetActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginForgot.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
                 if(cursor.getCount() != 0){
-                    cursor.moveToNext();
+                    cursor.moveToFirst();
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
                     intent.putExtra("username",cursor.getString(1));

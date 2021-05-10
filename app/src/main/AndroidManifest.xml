@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BankApp">
-        <activity android:name=".ForgetActivity"></activity>
         <activity android:name=".DepositActivity" />
         <activity android:name=".OverviewActivity" />
         <activity android:name=".LoginForgot" />

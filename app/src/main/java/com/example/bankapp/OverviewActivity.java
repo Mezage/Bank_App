@@ -22,7 +22,7 @@ public class OverviewActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         String user = bundle.getString("username");
         TextView greeting = findViewById(R.id.textView);
-        greeting.setText("Hello, "+user);
+        greeting.setText("Hello, "+ user);
 
 
 

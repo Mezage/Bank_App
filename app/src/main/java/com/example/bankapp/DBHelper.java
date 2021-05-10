@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //        db.execSQL("INSERT INTO bank.user (ID, username, password, balance) VALUES ('Carl#1', '123456', '1000'),('Wendy_2','22222','500') , ('Joseph3!', '010101', '26000'), ('Alba4', '987654', '15')");
 
-        Log.e("table", "onCreate called");
+        Log.d("table", "onCreate called");
 
         //why no call to new add new user?
         ContentValues contentValues = new ContentValues();
@@ -70,9 +70,14 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("username",username);
         contentValues.put("password",password);
         contentValues.put("BALANCE",balance);
-        contentValues.put("email",email);
+        contentValues.put("EMAIL",email);
         long result = db.insert("user",null ,contentValues);
         return result != -1;
+    }
+
+    public Cursor getDataByEmail(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("select * from user WHERE email = '"+email+"'",null);
     }
 
     public Cursor getDataByUsername(String username){

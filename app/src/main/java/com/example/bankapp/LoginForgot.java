@@ -17,12 +17,12 @@ public class LoginForgot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_forgot);
+        setContentView(R.layout.activity_forget);
 
         Button back = findViewById(R.id.back);
         Button email = findViewById(R.id.verify);
 
-        EditText username = findViewById(R.id.editTextTextEmailAddress);
+        EditText address = findViewById(R.id.emailEditText);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,20 +38,22 @@ public class LoginForgot extends AppCompatActivity {
                 Log.d("Send email", "");
 
                 DBHelper dbh = new DBHelper(getApplicationContext());
-                Cursor cursor = dbh.getDataByUsername(username.getText().toString());
+                //Cursor cursor = dbh.getDataByUsername(address.getText().toString());
+                Cursor cursor = dbh.getDataByEmail(address.getText().toString());
 
                 //if user exists
-                //TODO: somehow return entire cursor
                 if (cursor != null && cursor.moveToFirst()) {
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
                     emailIntent.setData(Uri.parse("mailto:"));
                     emailIntent.setType("text/plain");
-                    //emailIntent.putExtra(Intent.EXTRA_EMAIL, cursor.getString(#));
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, address.getText().toString());
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Password Reminder");
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Your password is: \n" + cursor.getString(2));
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "For user: " + cursor.getString(1) +
+                            "\nYour password is: " + cursor.getString(2));
 
                     try {
                         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                        Toast.makeText(LoginForgot.this, "Email Sent", Toast.LENGTH_SHORT).show();
                         finish();
                         Log.i("Finished sending email...", "");
                     } catch (android.content.ActivityNotFoundException ex) {
