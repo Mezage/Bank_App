@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class OverviewActivity extends AppCompatActivity {
+public class  OverviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,26 @@ public class OverviewActivity extends AppCompatActivity {
 
 
         Button deposit_btn = findViewById(R.id.Deposit);
+        Button send_btn = findViewById(R.id.sendFeedback);
+
         TextView amount = findViewById(R.id.Amount);
         Cursor res = mydb.getDataByUsername(user);
         res.moveToNext();
         amount.setText(res.getString(3));
+
+
+        send_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String[] array = {"superSafeBank@gmail.com"};
+                intent.putExtra(Intent.EXTRA_EMAIL, array);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+                intent.putExtra(Intent.EXTRA_TEXT, "Username: " + res.getString(1)+"  "+ "Balance: " + res.getString(3));
+                if(intent.resolveActivity(getPackageManager())!=null) startActivity(intent);
+            }
+        });
 
         deposit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
