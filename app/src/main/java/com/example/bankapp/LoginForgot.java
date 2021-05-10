@@ -43,22 +43,26 @@ public class LoginForgot extends AppCompatActivity {
 
                 //if user exists
                 if (cursor != null && cursor.moveToFirst()) {
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setData(Uri.parse("mailto:"));
-                    emailIntent.setType("text/plain");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, address.getText().toString());
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Password Reminder");
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "For user: " + cursor.getString(1) +
-                            "\nYour password is: " + cursor.getString(2));
+                    Toast.makeText(LoginForgot.this, "Hello user: " + cursor.getString(1)
+                                    + "\nYour password is: " + cursor.getString(2), Toast.LENGTH_SHORT).show();
 
-                    try {
-                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                        Toast.makeText(LoginForgot.this, "Email Sent", Toast.LENGTH_SHORT).show();
-                        finish();
-                        Log.i("Finished sending email...", "");
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        Toast.makeText(LoginForgot.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-                    }
+
+                    //works, but cant really email anyone
+//                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//                    emailIntent.setData(Uri.parse("mailto:")).setType("text/plain");
+//                    emailIntent.putExtra(Intent.EXTRA_EMAIL, address.getText().toString());
+//                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Password Reminder");
+//                    emailIntent.putExtra(Intent.EXTRA_TEXT, "For user: " + cursor.getString(1) +
+//                            "\nYour password is: " + cursor.getString(2));
+//                    //emailIntent.putExtra(Intent.)
+//
+//                    try {
+//                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//                        finish();
+//                        Log.i("Finished sending email...", "");
+//                    } catch (android.content.ActivityNotFoundException ex) {
+//                        Toast.makeText(LoginForgot.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//                    }
                 }//else no user found
                 else
                     Toast.makeText(LoginForgot.this, "Sorry, you are not a registered user", Toast.LENGTH_SHORT).show();
