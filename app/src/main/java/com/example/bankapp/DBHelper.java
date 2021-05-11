@@ -107,8 +107,8 @@ public class DBHelper extends SQLiteOpenHelper {
             }
             contentValues.put("balance", Double.parseDouble( res.getString(3))+balance );
             db.update("user", contentValues,"USERNAME = ?", new String[]{username});
-
-            Log.d("balance_update: ",res.getString(1)+" has changed the balance to be "+res.getString(3));
+            Double finalbalance = Double.parseDouble(res.getString(3))+balance;
+            Log.d("balance_update: ",res.getString(1)+" has changed the balance to be "+ finalbalance );
         }
         return true;
     }
