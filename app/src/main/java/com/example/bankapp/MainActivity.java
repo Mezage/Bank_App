@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         log_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("signin password",password.getText().toString());
+
 
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
@@ -83,29 +83,16 @@ public class MainActivity extends AppCompatActivity {
 //                }while (cursor.moveToNext());
 
                 //at this point couldn't find matching user
-                cursor.close();
-                Toast.makeText(getApplicationContext(), "No User found", Toast.LENGTH_SHORT).show();
 
-            }
-        });
-
-        /*********** temporary just for testing database ********/
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DBHelper dbh = new DBHelper(getApplicationContext());
-                Cursor res = dbh.getAllData();
-                Log.d("table","~");
-                while(res.moveToNext()){
-                    Log.d("table", "ID: "+res.getString(0));
-                    Log.d("table", "username: "+res.getString(1));
-                    Log.d("table", "password: "+res.getString(2));
-                    Log.d("table", "balance: "+res.getString(3));
-                    Log.d("table", "email: "+res.getString(4));
+                else{
+                    Toast.makeText(getApplicationContext(), "No User found", Toast.LENGTH_SHORT).show();
                 }
+                cursor.close();
+
             }
         });
-        /*********** temporary    just for testing database */
+
+
 
 
     }

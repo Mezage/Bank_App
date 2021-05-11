@@ -23,9 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE INTEGER, EMAIL varchar(255) )");
 
-//        db.execSQL("INSERT INTO bank.user (ID, username, password, balance) VALUES ('Carl#1', '123456', '1000'),('Wendy_2','22222','500') , ('Joseph3!', '010101', '26000'), ('Alba4', '987654', '15')");
 
-        Log.d("table", "onCreate called");
 
         //why no call to new add new user?
         ContentValues contentValues = new ContentValues();

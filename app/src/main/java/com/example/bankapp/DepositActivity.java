@@ -40,7 +40,7 @@ public class DepositActivity extends AppCompatActivity {
 
                 if(res.getCount() != 0){
                     res.moveToNext();
-                    int currentBalance = Integer.parseInt(res.getString(3));
+//                    int currentBalance = Integer.parseInt(res.getString(3));
                     mydb.updateBalance(user,-Double.parseDouble(amount.getText().toString()));
 
                 }
@@ -61,7 +61,7 @@ public class DepositActivity extends AppCompatActivity {
                 if(res.getCount() != 0){
 
                     res.moveToNext();
-                    int currentBalance = Integer.parseInt(res.getString(3));
+//                    int currentBalance = Integer.parseInt(res.getString(3));
                     mydb.updateBalance(user,Double.parseDouble(amount.getText().toString()));
 
                 }
@@ -80,7 +80,6 @@ public class DepositActivity extends AppCompatActivity {
 
                 if(res.getCount() != 0){
                     res.moveToNext();
-                    int currentBalance = Integer.parseInt(res.getString(3));
                     mydb.updateBalance(user,-Double.parseDouble(amount.getText().toString()));
                     mydb.updateBalance(targetuser.getText().toString(), Double.parseDouble(amount.getText().toString()));
 

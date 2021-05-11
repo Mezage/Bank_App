@@ -45,14 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hint" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SHOW TABLE"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="13dp" />
-
     <TextView
         android:id="@+id/hint"
         android:layout_width="wrap_content"
