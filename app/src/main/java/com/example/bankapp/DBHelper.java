@@ -101,6 +101,10 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("ID",Integer.parseInt( res.getString(0) ));
             contentValues.put("username",res.getString(1));
             contentValues.put("password",res.getString(2));
+            if(Double.parseDouble( res.getString(3))+balance < 0){
+                Log.d("balance_update: ",res.getString(1)+" does not have enough in balacne");
+                return false;
+            }
             contentValues.put("balance", Double.parseDouble( res.getString(3))+balance );
             db.update("user", contentValues,"USERNAME = ?", new String[]{username});
 

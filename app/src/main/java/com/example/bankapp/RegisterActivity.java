@@ -37,13 +37,17 @@ public class RegisterActivity extends AppCompatActivity {
                     warning.setText("Please fill in all the information");
                 }
                 else if(res.getCount() == 0) {
-                    warning.setText("Success!");
-                    boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(),Double.parseDouble( balance.getText().toString()), email.getText().toString());
+                    if(Double.parseDouble(balance.getText().toString()) < 0){
+                        warning.setText("Please fill in a valid amount.");
+                    }else {
 
-                    Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-                    intent.putExtra("username", username.getText().toString());
-                    startActivity(intent);
+                        warning.setText("Success!");
+                        boolean ins = mydb.insertUser(username.getText().toString(), password.getText().toString(), Double.parseDouble(balance.getText().toString()), email.getText().toString());
 
+                        Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                        intent.putExtra("username", username.getText().toString());
+                        startActivity(intent);
+                    }
                 }else{
 
                     warning.setText("Username already in use!");
