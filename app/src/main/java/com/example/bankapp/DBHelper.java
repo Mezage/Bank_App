@@ -80,12 +80,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getDataByUsername(String username){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("select * from user WHERE username = '"+username+"'",null);
+        if(username.matches("[0-9a-zA-Z_]+"))
+            return db.rawQuery("select * from user WHERE username = '"+username+"'",null);
+        Log.d("illegal username or password","illegal username or password");
+        return null;
     }
 
     public Cursor getDataBytUsernameAndPassword(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("select * from user WHERE username = '"+username+"' AND  password = '"+ password +"'",null);
+        if(username.matches("[0-9a-zA-Z_]+") && password.matches("[0-9a-zA-Z_]+"))
+            return db.rawQuery("select * from user WHERE username = '"+username+"' AND  password = '"+ password +"'",null);
+        Log.d("illegal username or password","illegal username or password");
+        return null;
     }
 
     public Cursor getAllData() {

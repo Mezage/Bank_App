@@ -36,18 +36,19 @@ public class DepositActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Cursor res = mydb.getDataBytUsernameAndPassword(user,password.getText().toString());
+                Cursor res = mydb.getDataBytUsernameAndPassword(user, password.getText().toString());
 
-                if(res.getCount() != 0){
+                if (res != null && res.getCount() != 0) {
                     res.moveToNext();
 //                    int currentBalance = Integer.parseInt(res.getString(3));
-                    mydb.updateBalance(user,-Double.parseDouble(amount.getText().toString()));
+                    mydb.updateBalance(user, -Double.parseDouble(amount.getText().toString()));
 
+
+
+                    Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    intent.putExtra("username", user);
+                    startActivity(intent);
                 }
-
-                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-                intent.putExtra("username",user);
-                startActivity(intent);
 
             }
         });
@@ -58,16 +59,16 @@ public class DepositActivity extends AppCompatActivity {
 
                 Cursor res = mydb.getDataBytUsernameAndPassword(user,password.getText().toString());
 
-                if(res.getCount() != 0){
+                if(res != null && res.getCount() != 0) {
 
                     res.moveToNext();
-//                    int currentBalance = Integer.parseInt(res.getString(3));
-                    mydb.updateBalance(user,Double.parseDouble(amount.getText().toString()));
+                    mydb.updateBalance(user, Double.parseDouble(amount.getText().toString()));
 
+
+                    Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    intent.putExtra("username", user);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-                intent.putExtra("username",user);
-                startActivity(intent);
 
             }
         });
@@ -78,17 +79,16 @@ public class DepositActivity extends AppCompatActivity {
 
                 Cursor res = mydb.getDataBytUsernameAndPassword(user,password.getText().toString());
 
-                if(res.getCount() != 0){
+                if( res != null && res.getCount() != 0) {
                     res.moveToNext();
-                    mydb.updateBalance(user,-Double.parseDouble(amount.getText().toString()));
+                    mydb.updateBalance(user, -Double.parseDouble(amount.getText().toString()));
                     mydb.updateBalance(targetuser.getText().toString(), Double.parseDouble(amount.getText().toString()));
 
+
+                    Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
+                    intent.putExtra("username", user);
+                    startActivity(intent);
                 }
-
-                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-                intent.putExtra("username",user);
-                startActivity(intent);
-
 
             }
         });

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
-                if(cursor.getCount() != 0){
+                if(cursor != null && cursor.getCount() != 0){
                     cursor.moveToFirst();
 
                     Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
@@ -65,29 +65,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-//                do {  //check all users with same username
-//
-//                    if (cursor != null && cursor.moveToFirst()) {
-//
-//                        //assume that password is 2nd column <- it is 3rd :D
-//                        if (cursor.getString(2).compareTo(password.getText().toString()) == 0) {
-//                            //launch main and close cursor
-//                            cursor.close();
-//
-////                            Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-////                            startActivity(intent);
-//
-//                        }  //move to next column, assume its password
-//                    }
-//
-//                }while (cursor.moveToNext());
-
-                //at this point couldn't find matching user
 
                 else{
                     Toast.makeText(getApplicationContext(), "No User found", Toast.LENGTH_SHORT).show();
                 }
-                cursor.close();
+//                cursor.close();
 
             }
         });
