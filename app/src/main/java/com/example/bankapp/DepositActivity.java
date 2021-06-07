@@ -79,7 +79,7 @@ public class DepositActivity extends AppCompatActivity {
 
                 Cursor res = mydb.getDataBytUsernameAndPassword(user,password.getText().toString());
 
-                if( res != null && res.getCount() != 0) {
+                if( res != null && res.getCount() != 0 && targetuser.getText().toString().matches("[0-9a-zA-Z_]+")) {
                     res.moveToNext();
                     mydb.updateBalance(user, -Double.parseDouble(amount.getText().toString()));
                     mydb.updateBalance(targetuser.getText().toString(), Double.parseDouble(amount.getText().toString()));

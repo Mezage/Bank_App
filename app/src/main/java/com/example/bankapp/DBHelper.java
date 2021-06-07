@@ -100,6 +100,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean updateBalance(String username,double balance) {
+        if(!username.matches("[0-9a-zA-Z_]+"))
+            return false;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = getDataByUsername(username);
         while(res.moveToNext()){
