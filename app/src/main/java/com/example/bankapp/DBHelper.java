@@ -102,6 +102,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from user",null);
     }
 
+    public void resetPassword(String email, String newPass){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("PASSWORD", newPass);
+
+        db.update("user", contentValues,"EMAIL = ?", new String[]{email});
+    }
+
     public boolean updateBalance(String username,double balance) {
         if(!username.matches("[0-9a-zA-Z_]+"))
             return false;
@@ -113,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("username",res.getString(1));
             contentValues.put("password",res.getString(2));
             if(Double.parseDouble( res.getString(3))+balance < 0){
-                Log.d("balance_update: ",res.getString(1)+" does not have enough in balacne");
+                Log.d("balance_update: ",res.getString(1)+" does not have enough in balance");
                 return false;
             }
             contentValues.put("balance", Double.parseDouble( res.getString(3))+balance );

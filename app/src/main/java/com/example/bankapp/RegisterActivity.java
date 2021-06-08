@@ -35,8 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
                 TextView warning = (TextView) findViewById(R.id.hint);
                 Cursor res = mydb.getDataByUsername(username.getText().toString());
 
-                if (username.getText().toString().equals("") || password.getText().toString().equals("") ||
-                        balance.getText().toString().equals("") || email.getText().toString().equals("")) {
+                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty() ||
+                        balance.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
                     warning.setText("Please fill in all the information");
                 } else if (res.getCount() == 0) {
                     if (Double.parseDouble(balance.getText().toString()) < 0) {
