@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class  OverviewActivity extends AppCompatActivity {
 
@@ -43,8 +44,8 @@ public class  OverviewActivity extends AppCompatActivity {
                 String[] array = {"superSafeBank@gmail.com"};
                 intent.putExtra(Intent.EXTRA_EMAIL, array);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-                intent.putExtra(Intent.EXTRA_TEXT, "Username: " + res.getString(1)+"  "+ "Balance: " + res.getString(3));
                 if(intent.resolveActivity(getPackageManager())!=null) startActivity(intent);
+                else Toast.makeText(getApplicationContext(),"Download a trusted email app first!", Toast.LENGTH_LONG);
             }
         });
 
