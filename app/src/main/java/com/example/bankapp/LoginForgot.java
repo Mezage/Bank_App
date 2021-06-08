@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +37,6 @@ public class LoginForgot extends AppCompatActivity {
                 Log.d("Send email", "");
 
                 DBHelper dbh = new DBHelper(getApplicationContext());
-                //Cursor cursor = dbh.getDataByUsername(address.getText().toString());
                 Cursor cursor = dbh.getDataByEmail(address.getText().toString());
 
                 //if user exists
@@ -68,7 +66,5 @@ public class LoginForgot extends AppCompatActivity {
                     Toast.makeText(LoginForgot.this, "Sorry, you are not a registered user", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

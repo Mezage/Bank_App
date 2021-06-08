@@ -6,7 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -16,16 +18,10 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context,DATABASE_NAME,null,1);
     }
 
-    //this won't be called if not in a service
-    //will have to add this to constructor or something
-    //maybe restrict balance to only integers, to avoid exceptions
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME varchar(255), PASSWORD varchar(255), BALANCE INTEGER, EMAIL varchar(255) )");
 
-
-
-        //why no call to new add new user?
         ContentValues contentValues = new ContentValues();
         contentValues.put("username","Carl#1");
         contentValues.put("password","123456");
@@ -73,9 +69,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
     public Cursor getDataByEmail(String email){
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("select * from user WHERE email = '"+email+"'",null);
+        if (isValidEmail(email)) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            return db.rawQuery("select * from user WHERE email = '" + email + "'", null);
+        }
+        return null;
     }
 
     public Cursor getDataByUsername(String username){

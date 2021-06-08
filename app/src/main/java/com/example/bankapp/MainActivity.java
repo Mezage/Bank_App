@@ -33,14 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        log_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), OverviewActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         forgot_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 DBHelper dbh = new DBHelper(getApplicationContext());
                 Cursor cursor = dbh.getDataBytUsernameAndPassword(username.getText().toString(), password.getText().toString());
                 if(cursor != null && cursor.getCount() != 0){
@@ -65,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-
                 else{
                     Toast.makeText(getApplicationContext(), "No User found", Toast.LENGTH_SHORT).show();
                 }
@@ -73,9 +63,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 }
